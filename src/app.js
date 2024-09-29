@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // You can specify the allowed origin if needed
+    origin: "https://simple-chatapp-six.vercel.app", // You can specify the allowed origin if needed
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
@@ -32,7 +32,7 @@ global.io = io;
 // Middlewares
 app.use(
   cors({
-    origin: "*", // Adjust the origin based on your front-end deployment
+    origin: "https://simple-chatapp-six.vercel.app", // Adjust the origin based on your front-end deployment
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     credentials: true,
   })
