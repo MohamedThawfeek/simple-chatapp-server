@@ -29,15 +29,6 @@ io.on("connection", (socket) => {
 // Global io instance for accessing it elsewhere
 global.io = io;
 
-// Middlewares
-app.use(
-  cors({
-    origin: "https://simple-chatapp-six.vercel.app", // Adjust the origin based on your front-end deployment
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
-    credentials: true,
-  })
-);
-
 app.use(express.json({ limit: "50mb" }));
 
 app.use(
