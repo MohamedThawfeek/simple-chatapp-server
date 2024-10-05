@@ -8,12 +8,23 @@ const { connectDB } = require("./config/db");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// CORS middleware for Express
+app.use(cors({
+  origin: "https://simple-chatapp-six.vercel.app", // Use your specific client URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // Allows cookies to be sent if needed
+}));
+
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
+
 // Create HTTP server and attach Socket.IO
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // You can specify the allowed origin if needed
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: "https://simple-chatapp-six.vercel.app", // Use your client URL
+    methods: ["GET", "POST"],
+    credentials: true, // Allows sending of cookies with requests
   },
 });
 
@@ -28,12 +39,6 @@ io.on("connection", (socket) => {
 
 // Global io instance for accessing it elsewhere
 global.io = io;
-
-app.use(express.json({ limit: "50mb" }));
-
-app.use(
-  express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 })
-);
 
 // Routes
 app.get("/", async (req, res) => {
