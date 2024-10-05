@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://simple-chatapp-six.vercel.app", // You can specify the allowed origin if needed
+    origin: "*", // You can specify the allowed origin if needed
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
