@@ -9,8 +9,11 @@ exports.signup = async (req) => {
   try {
     const checkUser = await UserSchema.findOne({ email: email });
 
+    console.log("Checking user:", checkUser);
+
     if (checkUser) {
       return {
+        responseCode: 400,
         success: false,
         message: "Email already exists",
       };
