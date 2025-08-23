@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 5001;
 // Allow both production and localhost origins
 const allowedOrigins = [
   "https://simple-chatapp-six.vercel.app",
-  "http://localhost:3000"
 ];
 app.use(cors({
   origin: allowedOrigins,
